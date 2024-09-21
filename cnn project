@@ -1,0 +1,363 @@
+\documentclass[conference]{IEEEtran}
+\documentclass{article}
+
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0pt}{0pt} % For section
+\titlespacing*{\subsection}{0pt}{0pt}{0pt} % For subsection
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Fruit Ripeness Detection Using CNN Model
+{\footnotesize \textsuperscript{}}
+\thanks{Identify applicable funding agency here. If none, delete this.}
+}
+
+\author{\IEEEauthorblockN{\textsuperscript{} MS G Ajitha}
+\IEEEauthorblockA{\textit{Assistant professor} \\
+\textit{Institute of Aeronautical Engineering}\\
+Hyderabad, India \\
+}
+\and
+\IEEEauthorblockN{\textsuperscript{} K Sai Nikhil}
+\IEEEauthorblockA{\textit{Electronics and Communication } \\
+\textit{ Institute of Aeronautical Engineering }\\
+Hyderabad,India  }
+\and
+\IEEEauthorblockN{\textsuperscript{} K Byula Sankeerthana}
+\IEEEauthorblockA{\textit{Electronics and Communication} \\
+\textit{Institute of Aeronautical Engineering}\\
+Hyderabad,India \\
+}
+\and
+\IEEEauthorblockN{\textsuperscript{} Boga Rahul}
+\IEEEauthorblockA{\textit{Electronics and Communication} \\
+\textit{Institute of Aeronautical Engineering}\\
+Hyderabad,India \\
+}
+}
+
+\maketitle
+
+\begin{abstract}
+Detecting the ripeness of tomatoes is essen tial for
+ optimal harvest timing and maintaining high product quality in
+ agriculture. This project focuses on creating an automated system
+ to determine tomato ripeness in a farm setting, utilizing advanced
+ imaging combined with machine learning. Fruit ripeness estima
+tion models have for decades depended on spectral index features
+ or colour-based features, such as mean, standard deviation,
+ skewness, colour moments, and/or histograms for learning traits
+ of fruit ripeness. Recently, few studies have explored the use of
+ deep learning techniques to extract features from images of fruits
+ with visible ripeness cues. However, the Tomato fruit does not
+ show obvious and reliable visible traits of ripeness when mature
+ and therefore poses great difficulty to fruit pickers. The mature
+ Tomato, to the human eye, is black before, during, and post
+ripening. By analyzing color,texture features, and employing deep
+ learning models,the system can accurately classify tomatoes based
+ on their ripeness stages. High-resolution images are taken under
+ natural light, with significant features extracted and examined.
+ A convolutional neural network (CNN) is trained on labeled
+ datasets to identify patterns associated with different ripeness
+ levels. Designed to function in real-time, this system offers
+ farmers immediate feedback on crop ripeness. Field tests have
+ shown its robustness and accuracy, underscoring its potential
+ to enhance efficiency in tomato farming. By reducing the need
+ for manual inspection and minimizing post-harvest losses, this
+ project marks a significant advancement in integrating smart
+ technologies for better crop management and yield forecasting 
+\end{abstract}
+
+CNN,Hyperspectral images,Machine learn
+ing,Ripeness.
+
+\end{IEEEkeywords}
+
+\section{Introduction}
+The tomato, as one of the most important vegetable crops,
+ ranks first in global total annual production the ripeness of
+ tomatoes has become one of the key factors affecting the qual
+ity of tomato production[2].In today’s agricultural landscape,
+ accurately gauging the ripeness of tomatoes is essential for
+ optimizing har vest schedules, ensuring high-quality produc
+tions, and reducing waste. Traditional methods, such as visual
+ checks and manual testing, tend to be subjective and time
+consuming. The rise of precision agriculture underscores the
+ need for sophisticated, automated methods that can reliably
+ and consistently evaluate fruit ripeness in diverse farming
+ environments. Hyper spectral imaging (HSI)[1]has emerged as
+ a powerful tool in agricultural research and practice. Unlike
+ con ventional imaging, HSI captures a wide spectrum of
+ light across numerous bands, enabling the detection of subtle
+ differences in the biochemical composition and physical prop
+erties of crops. Convolutional Neu ral Networks (CNNs)[3]have
+ demonstrated remarkable success in various computer vision
+ tasks, including Hyderabad,India image classification, object
+ detection, and segmenta tion. By leveraging the hierarchical
+ feature learning capability of CNNs, it is possible to extract
+ and analyze complex patterns from hyper-spectral images.
+ Ensemble learning, which combines the predictions of multiple
+ models, can further enhance the robustness and accuracy
+ of ripeness assessment by mitigating the biases and errors
+ of individual models. This project aims to integrate hyper
+spectral imaging with CNN ensemble learning to develop a
+ sophisticated system for assessing tomato ripeness in variable
+ farm conditions. By employing this approach, we seek to
+ achieve high precision in ripeness classification, accommo
+ dating the natural variability in tomato appearance due to
+ differences in growing conditions, varieties, and environmen
+tal factors. Convolutional neural networks and hyperspectral
+ imaging open new avenues to detect fruit ripeness[1] beyond
+ the visible spectrum.An ensemble of neural networks offers
+ accurate ripeness assessment, ensuring tomatoes are picked
+ at their peak for optimal flavor and market value.Machine
+ learn ing models are transforming the way farmers assess
+ ripeness in real-time, providing a blend of technology and tra
+ditional farming[[4].Hyperspectral imaging reveals ripeness cues
+ not visible to the naked eye, allowing for non-destructive
+ analysis in farm environments.These sophisticated algorithms
+ enable reliable and consistent ripeness detection, contributing
+ to reduced waste and better resource management sustainable
+ farming by minimizing unnecessary harvesting and promot
+ing efficient resource utilization[2]. Combining hyper-spectral
+ imaging (HSI) and con volutional neural networks (CNNs)
+ with ensemble learning for assessing tomato ripeness is a
+
+\section{ MATERIALS AND METHODS}
+
+\subsection{ Data Collection}
+
+ 
+ \subsubsection{Hyper-spectral Imaging:} The process of data collection
+ involves taking a hyper-spectral camera to get detailed pictures
+ of the tomatoes at all different stages of ripeness. As part
+ of the approach for appraisal of the real-world applicability
+ of the system, images are taken under diverse environmental
+ conditions such as lighting and temperature[2]. This allows for
+ the development of a robust dataset that can give an account
+ of wide-ranging variations in types and stages of ripeness.
+ Training the model to generalize very well across different
+ scenarios would basically require gathering a wide variety of
+ images.
+\subsection{Preprocessing}
+\subsubsection{ Data Cleaning:} 
+Data cleaning has to be performed to
+make sure the quality of images before any kind of analysis
+is satisfactory. This step includes noise removal from the
+images intended to provide a clearer and more accurate picture.
+Normalization is done on images to adjust them and maintain
+uniformity in the comparison throughout the dataset[1]. Proper
+preprocessing guarantees data integrity and further analysis
+performance.
+\subsubsection{Feature Extraction and Band Selection:}  Feature extraction and band selection are required for the high-dimensional
+data coming out from the hyper-spectral imaging technique.
+Here, some dimensionality reduction techniques have been
+applied to reduce the complexity of the data by considering
+the most relevant or significant features. The most informative
+parts of the image data that play an important role in deciding
+the ripeness of tomatoes were selected through the band
+selection approach, which reduces the computational load and
+increases the efficiency of the model
+\subsection{CNN Model Development}
+\subsubsection{ Single CNN Model:}
+ Development of a CNN model
+ begins with the choosing of suitable architecture that can
+ handle hyper-spectral data. Models like ResNet are opted
+ because they prove to be robust in feature extraction and
+ in classification tasks[5]. The training process involves usage
+ of labeled images so that a model can learn to distinguish
+ between different stages of ripeness. Evaluation metrics, such
+ as accuracy, are used in checking the performance of the model
+ in order to establish the effectiveness of the model.
+\subsubsection{Transfer Learning: } Transfer learning is used to improve
+ the CNN model. This approach uses a pre-trained model that
+ is trained on an extensive large-scale database and fine-tunes
+ it for the given task, namely tomato ripeness detection. Fine
+tuning adjusts the parameters of the model with respect to the
+ new task, and it utilizes the knowledge that has been learnt
+ from past training in improving the performance of the model
+ on the ripeness classification task
+\subsection{Ensemble Learning}
+\subsubsection{ Model Averaging:}
+Actually, ensemble learning utilizes
+prediction for enhancing the accuracy of classification by the
+help of multiple CNN models[2]. It applies different architectures
+of CNN and trains them independently; then the aggregation
+of their predictions is used to produce the final output. That
+may reduce the variance of the model and thus improve the
+overall performance of the ripeness detection system. Hybrid
+approaches combine with the hyper-spectral data other data
+coming from other sensors: ordinary cameras, etc. These allow
+a more integral and valuable evaluation of ripeness and are
+fused to provide the data, making the system more accurate
+and robust in their detection.
+\subsection{Hybrid Approaches:}
+\subsubsection{Data Fusion:} Hybrid approaches involve data collection
+ from auxiliary sensors, which include cameras and hyper
+spectral sensors. Combination techniques are used by combin
+ing the various types of data. This gives a more comprehensive
+ assessment of tomato ripeness, and the approach becomes
+ multi-sensor better than unidimensional methods to ensure
+ more accurate and robust ripeness detection systems.
+\subsubsection{CNN with Traditional Image Processing:} Besides the
+ use of CNNs, traditional image processing methods perform
+ improved feature extraction. Features extraction outputs from
+ these methods and also outcomes of the CNNs are fused
+ together to provide an enriched data set for the classification
+ process[5]. This hybrid approach ensures that performance ben
+efits accruable both to the old and new techniques under this
+ model
+
+\subsection{Model Deployment}
+\subsubsection{ Real-time Detection System:}
+ For practical application,
+ the trained model is integrated into a real-time detection
+ system such as a robotic harvester. Integration is made to
+ ensure that the model operates on data in real time satisfyingly
+ fast and efficiently. Optimization, therefore is done in such a
+ way to enhance the performance of the model even further so
+ it may be used in operational settings.
+\subsection{Evaluation and Validation}
+\subsubsection{Performance Metrics:}
+To validate the model, such per
+formance metrics like K-Fold Cross-Validation are used. This
+ method will involve training on different subsets of data and
+ testing as well, thereby ensuring that the model performs under
+ different situations. Hence, cross-validation helps in determin
+ing whether robustness properties of the model generalize to
+ unknown cases in order to become confident of applying the
+ model with real data.
+\section*{Materials}
+\textbf{Hyperspectral Imaging System (HSI):} 
+A hyperspectral camera recorded spectral data from fruit samples across a wide wavelength range. The spectral resolution of the camera spanned \([400 \, \text{nm}]\) to \([700 \, \text{nm}]\), and it covered the following bands:
+\begin{itemize}
+    \item Blue
+    \item Green to Yellow
+    \item Red
+\end{itemize}
+\textbf{Fruit Samples:} Samples of various fruits, including apples, bananas, and mangoes, were sourced at all levels of ripeness for experimentation. Fruits' ripeness was manually categorized into three distinguishable classes: unripe, partially ripe, and fully ripe. These labels were used in assisting the model to understand how the ripeness condition varied with the hyperspectral data obtained.
+\\
+\textbf{Computer System:} All the processing of data and training of models were done using a computer system with an Intel Core i5 processor and 8 GB of RAM. The configuration of equipment was sufficient to manage the computational requirement for the hyperspectral data processing and training Convolutional Neural Network.
+\\
+\textbf{Software Tools:} In Python, data input was processed and the CNN implemented. The CNN model was developed in TensorFlow and Keras for fruit ripeness detection. Preprocessed hyperspectral data were prepared using MATLAB or other hyperspectral imaging software, ensuring quality and format as required for proper input into the CNN.
+
+\end{itemize}
+\subsection{Some Common Mistakes}\label{SCM}
+\begin{itemize}
+\item The word ``data'' is plural, not singular.
+\item The subscript for the permeability of vacuum $\mu_{0}$, and other common scientific constants, is zero with subscript formatting, not a lowercase letter ``o''.
+\item In American English, commas, semicolons, periods, question and exclamation marks are located within quotation marks only when a complete thought or name is cited, such as a title or full quotation. When quotation marks are used, instead of a bold or italic typeface, to highlight a word or phrase, punctuation should appear outside of the quotation marks. A parenthetical phrase or statement at the end of a sentence is punctuated outside of the closing parenthesis (like this). (A parenthetical sentence is punctuated within the parentheses.)
+\item A graph within a graph is an ``inset'', not an ``insert''. The word alternatively is preferred to the word ``alternately'' (unless you really mean something that alternates).
+\item Do not use the word ``essentially'' to mean ``approximately'' or ``effectively''.
+\item In your paper title, if the words ``that uses'' can accurately replace the word ``using'', capitalize the ``u''; if not, keep using lower-cased.
+\item Be aware of the different meanings of the homophones ``affect'' and ``effect'', ``complement'' and ``compliment'', ``discreet'' and ``discrete'', ``principal'' and ``principle''.
+\item Do not confuse ``imply'' and ``infer''.
+\item The prefix ``non'' is not a word; it should be joined to the word it modifies, usually without a hyphen.
+\item There is no period after the ``et'' in the Latin abbreviation ``et al.''.
+\item The abbreviation ``i.e.'' means ``that is'', and the abbreviation ``e.g.'' means ``for example''.
+\end{itemize}
+An excellent style manual for science writers is \cite{b7}.
+
+\subsection{Authors and Affiliations}
+\textbf{The class file is designed for, but not limited to, six authors.} A 
+minimum of one author is required for all conference articles. Author names 
+should be listed starting from left to right and then moving down to the 
+next line. This is the author sequence that will be used in future citations 
+and by indexing services. Names should not be listed in columns nor group by 
+affiliation. Please keep your affiliations as succinct as possible (for 
+example, do not differentiate among departments of the same organization).
+
+\subsection{Identify the Headings}
+Headings, or heads, are organizational devices that guide the reader through 
+your paper. There are two types: component heads and text heads.
+
+Component heads identify the different components of your paper and are not 
+topically subordinate to each other. Examples include Acknowledgments and 
+References and, for these, the correct style to use is ``Heading 5''. Use 
+``figure caption'' for your Figure captions, and ``table head'' for your 
+table title. Run-in heads, such as ``Abstract'', will require you to apply a 
+style (in this case, italic) in addition to the style provided by the drop 
+down menu to differentiate the head from the text.
+
+Text heads organize the topics on a relational, hierarchical basis. For 
+example, the paper title is the primary text head because all subsequent 
+material relates and elaborates on this one topic. If there are two or more 
+sub-topics, the next level head (uppercase Roman numerals) should be used 
+and, conversely, if there are not at least two sub-topics, then no subheads 
+should be introduced.
+
+\subsection{Figures and Tables}
+\paragraph{Positioning Figures and Tables} Place figures and tables at the top and 
+bottom of columns. Avoid placing them in the middle of columns. Large 
+figures and tables may span across both columns. Figure captions should be 
+below the figures; table heads should appear above the tables. Insert 
+figures and tables after they are cited in the text. Use the abbreviation 
+``Fig.~\ref{fig}'', even at the beginning of a sentence.
+
+\begin{table}[htbp]
+\caption{Table Type Styles}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Table}&\multicolumn{3}{|c|}{\textbf{Table Column Head}} \\
+\cline{2-4} 
+\textbf{Head} & \textbf{\textit{Table column subhead}}& \textbf{\textit{Subhead}}& \textbf{\textit{Subhead}} \\
+\hline
+copy& More table copy$^{\mathrm{a}}$& &  \\
+\hline
+\multicolumn{4}{l}{$^{\mathrm{a}}$Sample of a Table footnote.}
+\end{tabular}
+\label{tab1}
+\end{center}
+\end{table}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics{fig1.png}}
+\caption{Example of a figure caption.}
+\label{fig}
+\end{figure}
+
+Figure Labels: Use 8 point Times New Roman for Figure labels. Use words 
+rather than symbols or abbreviations when writing Figure axis labels to 
+avoid confusing the reader. As an example, write the quantity 
+``Magnetization'', or ``Magnetization, M'', not just ``M''. If including 
+units in the label, present them within parentheses. Do not label axes only 
+with units. In the example, write ``Magnetization (A/m)'' or ``Magnetization 
+\{A[m(1)]\}'', not just ``A/m''. Do not label axes with a ratio of 
+quantities and units. For example, write ``Temperature (K)'', not 
+``Temperature/K''.
+
+\section*{Acknowledgment}
+
+The preferred spelling of the word ``acknowledgment'' in America is without 
+an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B. 
+G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor 
+acknowledgments in the unnumbered footnote on the first page.
+
+
+
+\begin{thebibliography}{00}
+\bibitem{b1} M. P. Reis, A. F. Rios, and M. Zortea, "Deep Learning for Fruit Ripeness Classification," 2018 International Joint Conference on Neural Networks (IJCNN), Rio de Janeiro, 2018.
+\bibitem{b2} C. J. Van Roy, P. De Smedt, K. Verboven, and B. Mertens, "Hyperspectral and Multispectral Imaging for Non-Destructive Fruit Ripeness Detection Using CNN," Computers and Electronics in Agriculture, vol. 142, pp. 302-309, 2017.
+\bibitem{b3} P. F. S. Rodrigues, R. T. Santos, et al., "Fruit Classification Based on Hyperspectral Imaging and Convolutional Neural Networks," 2020 IEEE Conference on Industrial Electronics and Applications (ICIEA), 2020.
+\bibitem{b4} S. Brahimi, K. Boukhalfa, and A. Moussaoui, "Deep Learning for Tomato Ripeness Classification," International Journal of Computer Vision, vol. 127, no. 4, pp. 518-536, 2019.
+\bibitem{b5} D. S. Jayas and N. Cheewaphongphan, "Deep Learning Approach for Ripeness Detection of Mangoes Using CNNs," Journal of Food Engineering, vol. 246, pp. 35-41, 2019.
+\bibitem{b6}J. T. Shilpa, S. M. Patil, "Banana Ripeness Detection and Classification Using Convolutional Neural Network," International Journal of Engineering Research & Technology (IJERT), vol. 8, no. 6, 2019.
+
+\end{thebibliography}
+\vspace{12pt}
+\color{red}
+IEEE conference templates contain guidance text for composing and formatting conference papers. Please ensure that all template text is removed from your conference paper prior to submission to the conference. Failure to remove the template text from your paper may result in your paper not being published.
+
+\end{document}
